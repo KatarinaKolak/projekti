@@ -1,0 +1,19 @@
+﻿{% extends 'mentor_nav.html' %}
+
+{%block content%}
+<div class=" details ">
+    <b>Details:</b><br /><br />
+
+    <p><b>'Kod: '</b> {{subject.kod}}</p>
+    <p><b>'Ime: ' </b>{{subject.ime}}</p>
+    <p><b>'Program: ' </b>{{subject.program}}</p>
+    <p><b>'Bodovi: ' </b>{{subject.bodovi}}</p>
+    <p><b>'Sem_redovni: ' </b>{{subject.sem_redovni}}</p>
+    <p><b>'Sem_izvanredni: ' </b>{{subject.sem_izvanredni}}</p>
+    <p><b>'Izborni: ' </b>{{subject.izborni}}</p>
+    <br /><br />
+    <a href="{%url 'all_subjects' %}"><button><b>Natrag</b></button></a>
+
+</div>
+
+{%endblock%}

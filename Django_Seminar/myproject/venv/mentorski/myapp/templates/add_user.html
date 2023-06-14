@@ -1,0 +1,15 @@
+﻿{% extends 'mentor_nav.html' %}
+
+{%block content%}
+<form method="POST">
+    <table>
+        <tr>
+            <td>{{form}}</td>
+            {% csrf_token %}
+        </tr>
+    </table><br /><br />
+    <button>ADD</button>
+</form>
+
+
+{%endblock%}

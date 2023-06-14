@@ -1,0 +1,84 @@
+﻿{% if user.is_authenticated and user.role == 'student'%}
+    {% include 'student_nav.html' %}
+{%elif user.is_authenticated and user.role == 'mentor' %}
+    {% include 'mentor_nav.html' %}
+{%endif%}
+
+
+{%block content%}
+<div class="upisani">
+    <p><b>Upisi ({{student.username}})</b></p>
+    {%if student.status == 'redovni'%}
+        {%for i in '123456' %}
+            <b>{{forloop.counter}} semestar: </b><br />
+            {% with forloop.counter as outer_counter%}
+                {%for s in enroll_subjects %}
+                    {%for f in form%}
+                        {%if f.predmet_id_id == s.id and s.sem_redovni == outer_counter and f.status == 'enrolled'%}
+                            {{s.kod}}
+                            {{s.ime}}
+                            <a href="{%url 'edit_status' student_id=student.id predmet_id=s.id %}"><button><i class="fa fa-edit"></i></button></a>
+                            <a href="{%url 'delete_subject' student_id=student.id predmet_id=s.id %}"><button><i class="fa fa-close"></i></button></a> <br />
+                        {% elif f.predmet_id_id == s.id and s.sem_redovni == outer_counter and f.status == 'passed'%}
+                            {{s.kod}}
+                            {{s.ime}}
+                            <!-- <a href="{%url 'edit_status' student_id=student.id predmet_id=s.id %}">--><button type="submit" disabled><i class="fa fa-check"></i></button><!--</a>--> <br />
+                        {% elif f.predmet_id_id == s.id and s.sem_redovni == outer_counter %}
+                            {{s.kod}}
+                            {{s.ime}}
+                            <a href="{%url 'edit_status' student_id=student.id predmet_id=s.id %}"><button><i class="fa fa-edit"></i></button></a>
+                            <a href="{%url 'delete_subject' student_id=student.id predmet_id=s.id %}"><button><i class="fa fa-close"></i>></button></a> <br />
+                        {%endif%}
+                     {%endfor%}
+                {%endfor%}
+            {%endwith%}
+        {%endfor%}
+    {%elif student.status == 'izvanredni'%}
+        {%for i in '12345678'  %}
+            <b>{{forloop.counter}} semestar: </b><br />
+                {% with forloop.counter as outer_counter%}
+                    {%for s in enroll_subjects %}
+                        {%for f in form%}
+                            {%if f.predmet_id_id == s.id and s.sem_izvanredni == outer_counter and f.status == 'enrolled'%}
+                                {{s.kod}}
+                                {{s.ime}}
+                                <a href="{%url 'edit_status' student_id=student.id predmet_id=s.id %}"><button><i class="fa fa-edit"></i></button></a>
+                                <a href="{%url 'delete_subject' student_id=student.id predmet_id=s.id %}"><button><i class="fa fa-close"></i></button></a><br />
+                            {% elif f.predmet_id_id == s.id and s.sem_izvanredni == outer_counter and f.status == 'passed'%}
+                                {{s.kod}}
+                                {{s.ime}}
+                                <!-- <a href="{%url 'edit_status' student_id=student.id predmet_id=s.id %}">--><button type="submit" disabled><i class="fa fa-check"></i></button><!--</a>--><br />
+                            {% elif f.predmet_id_id == s.id and s.sem_izvanredni == outer_counter %}
+                                {{s.kod}}
+                                {{s.ime}}
+                                <a href="{%url 'edit_status' student_id=student.id predmet_id=s.id %}"><button><i class="fa fa-edit"></i></button></a>
+                                <a href="{%url 'delete_subject' student_id=student.id predmet_id=s.id %}"><button><i class="fa fa-close"></i></button></a><br />
+                             {%endif%}
+                        {%endfor%}
+                    {%endfor%}
+                {%endwith%}
+            {%endfor%}
+       {%else%}
+            <p> Nepoznat status studenta :(</p>
+       {%endif%}
+
+</div>
+<br />
+<br />
+<div class=" neupisani">
+    <table >
+
+        <caption><b>Predmeti:</b></caption>
+        <br />
+
+        {%for sub in subjects%}
+        <tr>
+            <td><a href="{%url 'add_new_subject' student_id=student.id predmet_id=sub.id%}"><button><i class="fa fa-plus"></i></button></a></td>
+            <td>{{sub.kod}}</td>
+            <td>{{sub.ime}}</td>
+            {% csrf_token %}
+            {%endfor%}
+        </tr>
+    </table>
+</div>
+{%endblock%}

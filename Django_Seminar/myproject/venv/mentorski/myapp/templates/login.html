@@ -1,0 +1,17 @@
+﻿{% extends 'base.html' %}
+
+{%block content%}
+
+<form method="POST">
+    <div class=" students">
+        <p><b>LOGIN</b></p><br />
+        <p><b>Unesite svoje podatke:</b></p> <br />
+        <b>Username:  </b><input type="input" class="form-control" name="username" id="inputEmail" placeholder="Username" required><br /><br />
+        <b>Password:  </b><input type="password" class="form-control" name="password" id="inputPass" placeholder="Password" required><br /><br />
+        {% csrf_token %}
+        <button type="submit">Login</button><br /><br />
+        <a href="{% url 'register' %}"> Niste registrirani ? </a>
+    </div>
+</form>
+
+{%endblock%}

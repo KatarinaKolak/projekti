@@ -1,0 +1,22 @@
+﻿{% if user.is_authenticated and user.role == 'student'%}
+    {% include 'student_nav.html' %}
+{%elif user.is_authenticated and user.role == 'mentor' %}
+    {% include 'mentor_nav.html' %}
+{%endif%}
+
+{%block content%}
+<form method="POST">
+    {% csrf_token %}
+    <div class="students">
+        <p><b>Jeste li sigurni da zelite upisati ovaj predmet ? </b></p>
+
+        <b>Predmet: </b>{{subject}}</br>
+        <b>Student: </b>{{student.username}}</br/>
+
+        <br /><br />
+
+        <button type="submit">SUBMIT</button>
+    </div>
+</form>
+
+{%endblock%}

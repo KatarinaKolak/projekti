@@ -1,0 +1,110 @@
+﻿body {
+    background-color: #e6e6ff;
+    font-family: "Arial", sans-serif;
+    font-size: 17px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #b3b3ff;
+    display: flex;
+    justify-content: center;
+}
+
+li {
+    float: left;
+}
+
+li a {
+   display: block;
+   color: white;
+   text-align: center;
+   padding: 14px 16px;
+   text-decoration: none;
+}
+
+
+li a:hover {
+    background-color: #8080ff;
+}
+
+
+.upisani {
+    position: relative;
+    top: 5%;
+    right: -60%;
+    width: 40%;
+    height: 60%;
+    line-height: 35px;
+}
+
+.neupisani {
+    position: relative;
+    top: -60%;
+    right: -10%;
+    width: 40%;
+    height: 80%;
+    overflow: auto;
+}
+
+
+
+.students {
+    //display: flex;
+    //justify-content: center;
+    text-align: center;
+    line-height: 40px;
+}
+
+.subjects {
+    position: relative;
+    right: -30%;
+    width: 70%;
+}
+
+.details {
+    position: relative;
+    right: -40%;
+}
+
+.buttons {
+    position: relative;
+    right: -10%;
+}
+
+button {
+    background-color: #8080ff;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+button {
+    transition-duration: 0.4s;
+}
+button :hover {
+    background-color: #6666ff;
+    color: black;
+    position: relative;
+    right: -40%;
+}
+
+.welcome {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.logout {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}

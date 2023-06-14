@@ -1,0 +1,26 @@
+﻿{% extends 'mentor_nav.html' %}
+
+{%block content%}
+<div class = "subjects">
+    
+    <table style="width:80%">
+        <p></p><a href="{%url 'add_subject' %}"><button><i class="fa fa-plus"></i></button></a><b> Novi predmet</b> <br /><br /></p><p>  <b>Predmeti: </b></p><br/> 
+        {%for subject in subjects%}
+
+        <tr>
+            
+
+            <td>{{subject.ime}}</td>
+            <td>{{subject.kod}} </td>
+            {% csrf_token %}
+            <td><a href="{%url 'subject_detail' predmet_id=subject.id %}"><button><i class="fa fa-info"></i></button></a></td>
+            <td><a href="{%url 'subject_update' predmet_id=subject.id %}"><button><i class="fa fa-edit"></i></button></a></td>
+            <td><a href="{%url 'deleteSubject' predmet_id=subject.id %}"><button><i class="fa fa-trash"></i></button></a></td>
+
+        </tr>
+
+        {%endfor%}
+
+    </table>
+</div>
+{%endblock%}

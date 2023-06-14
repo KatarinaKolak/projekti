@@ -1,0 +1,14 @@
+﻿{% extends 'mentor_nav.html' %}
+
+{%block content%}
+<div class="students">
+    <a href="{%url 'add_user' %}"><button><i class="fa fa-user-plus"></i></button></a><b>  Novi korisnik: </b><br /><br />
+    <p> <b> Studenti: </b></p>
+            {%for student in students%} <!-- ispisuje se popis studenta sa mogucnosti pregleda upisnog lista-->
+                <a href="{%url 'student_detail' student_id=student.id %}"><button><i class="fa fa-user"></i></button></a>
+                <a href="{%url 'enrollment_form' student_id=student.id %}"><button><i class="fa fa-address-card"></i></button></a>
+                 {{student.username}}
+                <br />
+            {%endfor%}
+    </div>
+{%endblock%}

@@ -1,0 +1,17 @@
+﻿{% if user.is_authenticated and user.role == 'student'%}
+    {% include 'student_nav.html' %}
+{%elif user.is_authenticated and user.role == 'mentor' %}
+    {% include 'mentor_nav.html' %}
+{%endif%}
+
+{%block content%}
+<form method="POST">
+    <div class="students">
+        {{form}}
+        {% csrf_token %}
+
+        <br /><br />
+        <button type="submit">SUBMIT</button>
+    </div>
+</form>
+{%endblock%}

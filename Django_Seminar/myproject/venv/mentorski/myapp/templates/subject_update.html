@@ -1,0 +1,20 @@
+﻿{% extends 'mentor_nav.html' %}
+{%block content%}
+<form method="POST">
+    <div class=" details ">
+        <table>
+            <tr>
+                <td>{{form}}</td>
+                {% csrf_token %}
+            </tr>
+
+        </table>
+        <br /><br />
+              <div class = " buttons ">
+                  <button type="submit" >SUBMIT</button>
+                  <br /><br />
+                  <a href="{%url 'all_subjects' %}"><button><b>Natrag</b></button></a>
+              </div>
+    </div>
+</form>
+{%endblock%}

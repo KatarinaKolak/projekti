@@ -1,0 +1,15 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<head>
+
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<ul>
+    <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+</ul><br/>
+<!---<p style="font-family:Sans MS"> <a href="{% url 'logout' %}"> LOGOUT</a></p>-->
+<body>
+    {% block content %}
+    {% endblock %}
+</body>

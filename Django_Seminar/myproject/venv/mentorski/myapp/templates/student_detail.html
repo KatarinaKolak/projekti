@@ -1,0 +1,20 @@
+﻿{% if user.is_authenticated and user.role == 'student'%}
+    {% include 'student_nav.html' %}
+{%elif user.is_authenticated and user.role == 'mentor' %}
+    {% include 'mentor_nav.html' %}
+{%endif%}
+
+{%block content%}
+<div class=" details ">
+    <b>Details:</b><br /><br />
+
+    <p><b>'Username: '</b> {{student.username}}</p>
+    <p><b>'Email: ' </b>{{student.email}}</p>
+    <p><b>'Status: ' </b>{{student.status}}</p>
+    <p><b>'Role: ' </b>{{student.role}}</p>
+    <br /><br />
+    <a href="{%url 'user_home' %}"><button><b>Natrag</b></button></a>
+
+</div>
+
+{%endblock%}
