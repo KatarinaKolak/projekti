@@ -1,0 +1,14 @@
+﻿{% extends 'base.html' %}
+
+{% block content %}
+<br /><br />
+<div class="inputFields">
+    <br /><br />
+    {% if user.is_authenticated and user.role == 'user' %}
+    <p><b><i>Dear custumer {{ user.username }}, </i></b></p>
+    <p><b><i> your order is successful completed. Thank you! &#128522 </i></b></p>
+    <p><b><i> You will be informed about your order tracking status &#128522 </i></b></p>
+    {%endif%}
+</div>
+<br /><br /><br /><br /><br/><br/>
+{% endblock %}

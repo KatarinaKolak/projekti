@@ -1,0 +1,126 @@
+﻿body {
+    background-color: #ffcce0;
+    font-family: "Lucida Handwriting Text", cursive;
+
+    color: #000000;
+}
+
+h2 {
+    text-align: center;
+    color: #660029;
+    font-family: "Montserrat", sanf-serif;
+    font-size: 29px;
+}
+
+b {
+    color: #660029;
+    font-family: "Lucida Handwriting Text", cursive;
+    font-size: 15px;
+}
+
+.cart {
+    border: 1px solid #666;
+    text-align: center;
+    text-decoration: none;
+    width: 85px;
+    height: 32px;
+    background: #99003d;
+    border-radius: 15px;
+    color: #FFF;
+    font-size: .75em;
+    font-weight: bold;
+    text-shadow: -1px -1px 0 #444;
+}
+
+.cart:active {
+    background: #cc0052;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #99003d;
+    height: 50px;
+}
+
+li {
+    float: left;
+    border-right: 1px solid #bbb;
+}
+
+li:last-child {
+   border-right: none;
+}
+
+li a, .search {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 5px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+li a:hover {
+    background-color: #e6005c;
+}
+
+.icons {
+    /*border: 1px solid #666;*/
+    text-align: center;
+    text-decoration: none;
+    width: 50px;
+    height: 28px;
+    background: #99003d;
+    border-radius: 15px;
+    color: #FFF;
+    font-size: .75em;
+    font-weight: bold;
+    text-shadow: -1px -1px 0 #444;
+}
+
+.mySearch {
+    /*border: 1px solid #666;*/
+    text-align: center;
+    text-decoration: none;
+    background: #ffe6f0;
+    width: 170px;
+    height: 28px;
+    border-radius: 15px;
+    color: #FFF;
+    font-size: .75em;
+    font-weight: bold;
+    text-shadow: -1px -1px 0 #444;
+}
+
+.homeContent {
+    display: flex;
+    flex-direction: row;
+    padding: 12px;
+}
+*/
+.loginContent {
+    color: green !important;
+}
+
+.logout{
+    text-align: center;
+
+}
+
+.productContent {
+    align-items: center;
+    text-align: center;
+    width: 300px;
+    height: 250px;
+    padding: 24px;
+    margin: 12px;
+    border: 3px solid #99003d;
+    font-size: 18px;
+}

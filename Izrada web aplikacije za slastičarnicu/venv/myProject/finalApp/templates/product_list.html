@@ -1,0 +1,57 @@
+﻿{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<body>
+
+    {% block content %}
+    <br /><br />
+    {% for items in categories %}
+    <h2>{{items.name}}</h2>
+    <div class="homeContent">
+        {% for product in filter.qs %}
+
+        {%if product.cakeCategory_id == items.id%}
+        <div class="productContent">
+            <div class="content">
+                <img src='{{ MEDIA_URL }}{{ product.image }}' width="175" height="135"><br />
+                <b> <i>{{product.name}}</i></b><br />
+                <b>Price:</b> {{product.price}} $<br />
+                <b>Detail:</b> {{product.description}}<br /><br />
+            </div>
+
+            <div class="icon">
+                {% if user.is_authenticated and user.role == 'user'%}
+                {% for cart in carts %}
+                {%if user.id == cart.user_id%}
+                <a href="{%url 'addCartItem' cartId=cart.id productId=product.id %}"><button class="cart"><i class="fa fa-cart">Add to cart</i></button></a>
+
+                {%if product.id in userFavs %}
+                <a class="favs" href="{%url 'removeFavouriteItems' userId=user.id productId=product.id %}"><button style="color:#ff3333;" class="icons"><i class="fa fa-heart"></i></button></a>
+                {%else%}
+                <a class="favs" href="{%url 'addFavouriteItem' userId=user.id productId=product.id %}"><button class="icons"><i class="fa fa-heart"></i></button></a>
+                {%endif%}
+                {%endif%}
+                {%endfor%}
+
+                {%elif user.is_authenticated and user.role == 'admin' %}
+                <a href="{%url 'productUpdate' productId=product.id %}"><button style="color:#99003d;" class="icons"><i class="fa fa-edit"></i></button></a>
+                <a href="{%url 'deleteProduct' productId=product.id %}"><button style="color:#ff3333; background:#fff;" class="icons"><i class="fa fa-trash"></i></button></a>
+                {%endif%}
+
+            </div>
+        </div><br/>
+        {%endif%}
+        {% endfor %}
+        {% if items.id in ids %}
+        <div class="categoryButton">
+            <a href="{%url 'filterProductsByCategory' categoryId=items.id %}"><button class="categoryIcon">View all</button></a><br />
+        </div><br />
+        {%endif%}
+    </div><br /><br/>
+
+
+    {%endfor%}
+
+    {% endblock %}
+</body>
+</html>

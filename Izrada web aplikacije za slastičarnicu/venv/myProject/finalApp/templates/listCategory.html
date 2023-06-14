@@ -1,0 +1,41 @@
+﻿{% extends 'base.html' %}
+<!DOCTYPE html>
+<body>
+    {% block content %}
+    <br /><br />
+    <p><h2>Categories:  {{items.name}} <a href="{%url 'addCategory' %}"><button style="color: #99003d;font-size:18px;" class="icons"><i class="fa fa-plus"></i></button></a></h2></p><br />
+    {% for items in categories %}
+    <h2>{{items.name}} <a href="{%url 'addProduct' cakeCategoryId=items.id %}"><button style="color: #99003d; font-size:15px;" class="icons"><i class="fa fa-plus"></i></button></a></h2>
+    <div class="homeContent">
+        {% for product in orderProducts%}
+
+        {%if product.cakeCategory_id == items.id%}
+        <div class="productContent" style="height: 280px;">
+
+            <img src='{{ MEDIA_URL }}{{ product.image }}' width="175" height="135"><br /><br />
+            <b>Product:</b> {{product.name}}<br />
+            <b>Price:</b> {{product.price}} $<br />
+            <b>Detail:</b> {{product.description}}
+            <br /><br />
+            <a href="{%url 'productUpdate' productId=product.id %}"><button style="color:#99003d;" class="icons"><i class="fa fa-edit"></i></button></a>
+            <a href="{%url 'deleteProduct' productId=product.id %}"><button style="color:#ff3333; background:#fff;" class="icons"><i class="fa fa-trash"></i></button></a>
+
+
+        </div>
+        {%endif%}
+
+        {%endfor%}
+    </div><br/>
+    {% if items.id in ids %}
+    <div class="categoryButton">
+        <a href="{%url 'filterProductsByCategory' categoryId=items.id %}"><button style="background:#fff; color: #99003d;" class="cart">View all</button></a><br />
+    </div><br /><br />
+    {%endif%}
+    {% endfor %}
+
+
+    {% endblock %}
+
+</body>
+
+</html>

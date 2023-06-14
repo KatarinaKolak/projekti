@@ -1,0 +1,23 @@
+﻿{% extends 'base.html' %}
+
+{% block content %}
+<br /><br />
+<div class="inputFields">
+    <br />
+    <form method="post">
+        <p><b><i>Choose payment options which you prefer: </i></b></p>
+
+        {% for element in form.paymentOptions %}
+        <p style="text-align:center; font-size: 18px;"> {{ element }}</p>
+        {%endfor%}
+        <br />
+
+        {% if user.is_authenticated%}
+        {% csrf_token %}
+        <div style="text-align:center; align-items: center;"><a href="{%url 'cardPayment' userId=user.id %}"><button class="iconsBuy"> Next </button></a></div>
+        {%endif%}
+
+    </form>
+</div>
+<br /><br /><br /><br />
+{% endblock %}

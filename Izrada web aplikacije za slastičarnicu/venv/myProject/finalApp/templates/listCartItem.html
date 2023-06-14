@@ -1,0 +1,58 @@
+﻿{% extends 'base.html' %}
+
+<!DOCTYPE html>
+<body>
+
+    {% block content %}
+    <br /><br /><br />
+    <h2>Cart items: </h2><br /><br />
+    {% if not cartItems %}
+    <div style="text-align:center;">
+
+        <p> Your cart is empty, please add items &#128522 </p><br/><br/><br/><br/><br/>
+
+    </div>
+    {%else%}
+    <div class="homeContent">
+
+
+        {% for cart in cartItems %}
+
+        {% for product in products%}
+
+        {%if product.id == cart.product_id%}
+        <div class="productContent" style="height: 280px;">
+            <div class="content">
+                <img src='{{ MEDIA_URL }}{{ product.image }}' width="175" height="135"><br />
+                <b> <i>{{product.name}}</i></b><br />
+                <b>Price:</b> {{product.price}} $<br />
+                <b>Detail:</b> {{product.description}}<br />
+                <b>Quantity: </b> {{cart.productQuantity}}
+
+
+                <a class="quantity1" style="font-size:15px;" href="{%url 'addCartItem' cartId=cart.cart_id productId=product.id %}"><button class="icons" style="color:#99003d;border:0;"><i class="fa fa-plus"></i></button></a>
+                <a class="quantity2" style="font-size:15px;" href="{%url 'removeCartItem' cartId=cart.cart_id productId=product.id %}"><button class="icons" style="color:#99003d;border:0;"><i class="fa fa-minus"></i></button></a><br /><br />
+
+                <a href="{%url 'deleteCartItem' cartItemId=cart.id userId=user.id %}"><button style="color:#ff3333; background:#fff;" class="iconsDel"><i class="fa fa-trash"></i></button></a><br />
+            </div>
+        </div>
+
+        {%endif%}
+
+        {%endfor%}
+
+        {% endfor %}
+    </div><br />
+    {%endif%}
+
+    <div class="payMessage">
+        {% if user.is_authenticated and cartItems %}
+
+        <p><i>Your total price to pay is: <b> {{totalPrice}} $ </b></i></p><br />
+        <a href="{%url 'buy' userId=user.id %}"><button class="iconsBuy">Buy</button></a>
+
+        {%endif%}
+    </div><br /><br />
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,25 @@
+﻿{% extends 'base.html' %}
+{% block content %}
+<br/><br/>
+<form method="POST">
+    <br /><br />
+    <div class="inputFields" style="align-items:center;text-align:center;">
+        {% for field in form %}
+        <p>
+           <p style="text-align:center;"> <b>{{ field.label_tag }}</b></p>
+            {{ field }}
+            {% if field.help_text %}
+            <small style="color: grey">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+        {% endfor %}
+     
+        {% endfor %}
+        <br/>
+        {% csrf_token %}
+        <button type="submit" class="favIcons" >Submit</button>
+    </div>
+</form>
+
+{% endblock %}

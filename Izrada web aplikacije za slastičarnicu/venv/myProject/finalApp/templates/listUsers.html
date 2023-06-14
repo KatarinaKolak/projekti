@@ -1,0 +1,49 @@
+﻿{% extends 'base.html' %}
+{%block content%}
+<br/><br/>
+
+    <form enctype="multipart/form-data" method="POST">
+        <br />
+        <div class ="sort"style="display:inline;">
+            {% for element in form %}
+            <p>
+                {% csrf_token %}
+                <b>Sort: </b><button class="icons" style="color:#99003d; height: 20px; font-size:15px;">{{element}}</button>
+
+            </p>
+            {%endfor%}
+
+        </div>
+
+    </form>
+    <br />
+    <table>
+        <tr>
+            <td><b> User number</b></td>
+            <td><b> First name</b></td>
+            <td><b> Last name</b></td>
+            <td><b> Username</b></td>
+            <td><b> Address</b></td>
+            <td><b> Phone </b></td>
+            <td><b> Edit </b></td>
+        </tr>
+        {% for user in users %}
+        {%if user.role == 'user'%}
+        <tr>
+            <td> {{user.id}}</td>
+            <td> {{user.firstName}}</td>
+            <td> {{user.lastName}}</td>
+            <td> {{user.username}}</td>
+            <td>{{user.address}}</td>
+            <td>{{user.phoneNumber}}</td>
+            {% csrf_token %}
+            <td> <a href="{%url 'userUpdate' userId=user.id %}"><button style="color:#99003d;" class="icons"><i class="fa fa-edit"></i></button></a></td>
+
+        </tr>
+        {%endif%}
+
+        {%endfor%}
+    </table>
+    <br /><br />
+
+{%endblock%}

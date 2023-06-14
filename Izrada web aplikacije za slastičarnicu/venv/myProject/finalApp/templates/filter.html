@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+{% load static %}
+{% load widget_tweaks %}
+<head>
+
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<div class="search">
+    <div class="items">
+        <h3>Sweet corner</h3>
+    </div>
+
+    <div class="searchPosition" style="float:right">
+        <form name="search" method="POST" action="{% url 'searchResult' %}">
+            <input class="mySearch" type="text" name="search" placeholder="Search" />
+            {% csrf_token %}
+            <button type="submit" class="icons"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+</div>
+
+
+<ul class="nav">
+    {% if user.is_authenticated and user.role == 'admin' %}
+    <li><a href="{%url 'homePage'  %}"><button class="icons"><i class="fa fa-home"></i></button></a></li>
+    <li style="float:right"><a href="{% url 'logout' userId=user.id %}"><button class="icons"><i class="fa fa-sign-out"></i></button></a></li>
+    <li style="float:right"><a href="{%url 'listUsers' %}"><button class="icons"><i class="fa fa-user"></i></button></a></li>
+    <li><a href="{%url 'listCategory' %}"><button class="icons"><i class="fa fa-plus-circle"></i></button></a></li>
+    <li style="float:right"><a href="{%url 'addUser' %}"><button class="icons"><i class="fa fa-user-plus"></i></button></a></li>
+    <li><a href="{%url 'statusUpdate' %}"><button class="icons"><i class="fa fa-truck"></i></button></a></li>
+
+    {% elif user.is_authenticated and user.role == 'user' %}
+    <li><a href="{%url 'homePage'  %}"><button class="icons"><i class="fa fa-home"></i></button></i></a></li>
+    <li style="float:right"><a href="{% url 'logout' userId=user.id %}"><button class="icons"><i class="fa fa-sign-out"></i></button></a></li>
+    <li><a href="{%url 'listFavouriteItems' userId=user.id %}"><button class="icons"><i class="fa fa-heart"></i></button></a></li>
+    <li><a href="{%url 'listCartItem' userId=user.id %}"><button class="icons"><i class="fa fa-shopping-cart"></i></button></a></li>
+    <li style="float:right"><a href="{%url 'userUpdate' userId=user.id %}"><button class="icons"><i class="fa fa-user"></i></button></a></li>
+    <li><a href="{%url 'tracking' userId=user.id %}"><button class="icons"><i class="fa fa-truck"></i></button></a></li>
+
+    {% else %}
+    <li><a href="{%url 'homePage' %}"><button class="icons"><i class="fa fa-home"></i></button></a></li>
+    <li style="float:right"><a href="{% url 'login' %}"><button class="icons"><i class="fas fa-sign-in-alt"></i></button></a></li>
+    <li style="float:right"><a href="{% url 'register' %}"><button class="icons"><i class="fa fa-user-plus"></i></button></a></li>
+
+    {%endif%}
+
+    <li style="float:right">
+        <!--<form method="POST" action="{% url 'filter' %}">
+        {% csrf_token %}-->
+
+        <a href="{%url 'filter' %}"><button class="icons"><i class="fa fa-filter"></i></button></a>
+        <!--</form>-->
+    </li>
+</ul><br /><br />
+
+
+<!--form method="GET" action="{% url 'search' %}">
+
+    <div class="inputFields">
+
+
+
+        <!--<b>{{filter.form.as_p}}</b>
+    <br />
+        {% for element in filter.form %}
+        {% if element.name == 'cakeCategory' %}
+
+        {% for item in element %}
+        <input type="checkbox" id="{{element}}" name="{{element}}" value="{{item.instance.name}}">
+
+
+        {% endfor %}
+        {%else%}
+        {{element.name}}{{element}}
+        {% endif %}
+        {% endfor %}
+        {% csrf_token %}
+        <button class="icons" type="submit">Filter</button>
+    </div>
+</form>-->
+
+<form method="get" action="{% url 'search' %}">
+    <div class="well">
+        <h4 style="margin-top: 0">Filter</h4>
+        <div class="row">
+            <div class="form-group col-sm-4 col-md-3">
+                {{ filter.form.price__gt.label_tag }}
+                {% render_field filter.form.price__gt class="form-control" %}
+            </div>
+            <div class="form-group col-sm-4 col-md-3">
+                {{ filter.form.price__lt.label_tag }}
+                {% render_field filter.form.price__lt class="form-control" %}
+            </div>
+            <div class="form-group col-sm-4 col-md-3">
+                {{ filter.form.update_on__gt.label_tag }}
+                {% render_field filter.form.update_on__gt class="form-control" %}
+            </div>
+            <div class="form-group col-sm-4 col-md-3">
+                {{ filter.form.update_on__lt.label_tag }}
+                {% render_field filter.form.update_on__lt class="form-control" %}
+            </div>
+            <div class="form-group col-sm-8 col-md-6">
+                {{ filter.form.cakeCategory.label_tag }}
+                <div>
+                    {% for category in filter.form.cakeCategory %}
+                    <label class="checkbox-inline">
+                        {{ category.tag }} {{ category.choice_label }}
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">
+            <span class="glyphicon glyphicon-search"></span> Filter
+        </button>
+    </div>
+</form>
+<body>
+    {% block content %}
+    {% endblock %}
+</body>
+<footer class="myFooter">
+    <ul>
+        <li><a href="#home">About page</a></li>
+        <li><a href="#news">Privacy Policy</a></li>
+        <li><a href="#">Help</a></li>
+        <li><a href="#">Terms</a></li>
+
+
+        <li style="float:right"><a href="http://www.facebook.com"><i class="fa fa-facebook-f"></i></a></li>
+        <li style="float:right"><a href="http://www.instagram.com"><i class="fa fa-instagram"></i></a></li>
+        <li style="float:right"><a href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+
+
+</footer>
+</html>
+
+
+

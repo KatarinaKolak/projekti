@@ -1,0 +1,57 @@
+﻿{% extends 'base.html' %}
+
+{% block content %}
+<br/><br/>
+    <div class="trackingIntro">
+        {%if orderStatus %}
+              <p><b> Thank you for trust &#128522 </b></p><br/>
+               <p><b> Status for your orders:</b></p><br/><br/>
+        {%else%}
+                <p><b>You don't have any ordered items yet! &#128553 </b></p>
+        {%endif%}
+    </div><br/>
+    <h2> Tracking products: </h2>
+
+                <div class="homeContent">
+                    {% for product in sortProducts %}
+                    {% for item in orderStatus %}
+                    {% if item.product_id == product.id %}
+                    <div class="productContent" style="height: 345px;">
+                        <div class="content">
+                            <img src='{{ MEDIA_URL }}{{ product.image }}' width="175" height="135"><br /><br />
+                            <b>{{product.name}}</b><br />
+                            <b>Price:</b> {{product.price}}<br />
+                            <b>Detail:</b> {{product.description}}<br />
+
+
+                            {% if item.status == 'confirmed' %}
+                            <b>Status: </b> confirmed<br /><br />
+                            <b>Status progress:</b><br /><br />
+                            <progress id="status" value="25" max="100"> 25% </progress><br />
+                            {% elif item.status == 'preparation' %}
+                            <b>Status: </b> preparation<br /><br />
+                            <b>Status progress:</b><br /><br />
+                            <progress id="status" value="50" max="100"> 50% </progress><br />
+                            {% elif item.status == 'delivery' %}
+                            <b>Status: </b> delivery<br /><br />
+                            <b>Status progress:</b><br /><br />
+                            <progress id="status" value="75" max="100"> 75% </progress><br />
+
+                            {% else %}
+                            <b>Status: </b>shipped<br /><br />
+                            <b>Status progress:</b><br /><br />
+                            <progress id="status" value="100" max="100"> 100% </progress><br />
+                            <p>Order confirmation: <a href="{%url 'userConfirmed' orderId=item.id userId=user.id %}"><button style="color:#99003d; border: 0; background:#ffe6f0; width: 40px; height: 25px;"><i class="fa fa-check"></i></button></a></a></p>
+                          
+                            {%endif%}
+                        </div>
+                        </div>
+
+                    {%endif%}
+
+                    {%endfor%}
+                    {%endfor%}
+
+                </div>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+﻿{% extends 'base.html' %}
+
+{% block content %}
+<br/><br/>
+<form method="POST">
+    <div class="loginContent">
+        <h2><b>Login</b></h2><br />
+        <p class ="data" style="text-align:center; "><b>Please enter your personal data:</b></p> <br />
+        <div class ="inputFields">
+            <b>Username:  </b><input class="mySearch" name="username" id="inputEmail" required /><br /><br />
+            <b>Password:  </b><input type="password" class="mySearch" name="password" id="inputPass" required /><br /><br />
+       
+        {% csrf_token %},
+        <button type="submit" style="background:#99003d; color:#FFF; font-size:15px; border:0; width: 50px; height: 35px;">Login</button><br /><br />
+        <a class="reg" href="{% url 'register' %}"> New account </a>
+         </div>
+    </div>
+</form>
+
+{%endblock%}

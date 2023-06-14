@@ -1,0 +1,50 @@
+﻿{% extends 'base.html' %}
+<!DOCTYPE html>
+<body>
+    {% block content %}
+
+    <br /><br /><br />
+    <h2>Favourite items: </h2><br /><br />
+    {% if not userItems %}
+                                    <div style="text-align:center;">
+                                        <p> Your wish list is empty, please discover and add items &#128522 </p><br /><br /><br /><br /><br />
+                                    </div>
+    {%else%}
+    <div class="homeContent">
+        {% for product in products %}
+        {% for item in userItems%}
+        {% if product.id == item.product_id %}
+        <div class="productContent">
+            <div class="content">
+                <img src='{{ MEDIA_URL }}{{ product.image }}' width="175" height="135"><br />
+                <b> {{product.name}}</b><br />
+                <b>Price:</b> {{product.price}}<br />
+                <b>Detail:</b> {{product.description}}<br /><br />
+            </div>
+            {% if user.is_authenticated and user.role == 'user'%}
+            {% for cart in cartItems %}
+            {%if user.id == cart.user_id%}
+            <div class="icon">
+                <a href="{%url 'addCartItem' cartId=cart.id productId=product.id %}"><button class="cart"><i class="fa fa-cart">Add to cart</i></button></a>
+                <a class="favs" href="{%url 'removeFavouriteItems' userId=user.id productId=product.id %}"><button style="color:#ff3333;" class="icons"><i class="fa fa-heart"></i></button></a>
+            </div>
+            {%endif%}
+        </div>
+        {%endfor%}
+        {%endif%}
+
+
+        {%endif%}
+        {%endfor%}
+
+        <br />
+        {% endfor %}
+
+        <br /><br />
+
+    </div>
+    {%endif%}
+    {% endblock %}
+
+</body>
+</html>

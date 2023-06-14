@@ -1,0 +1,22 @@
+﻿{% extends 'base.html' %}
+
+{%block content%}
+<form method="POST">
+    <br /><br /><br/>
+    <p class="userUpdate" style="text-align:center"> <b>Please enter your personal data: </b></p>
+    <div class="inputFields">
+        {% for element in form %}
+
+
+        {% csrf_token %}
+        <p>
+            <b>{{element.label}}</b></p>{{element}}
+            <br />
+
+
+
+            {% endfor %}
+            <button class="favIcons" type="submit" style="width: 70px; height: 30px;">Save</button>
+</div>
+</form>
+{%endblock%}

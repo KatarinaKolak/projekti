@@ -1,0 +1,56 @@
+﻿{% extends 'base.html' %}
+{%block content%}
+<br/><br/>
+    <div class=" details ">
+        <form enctype="multipart/form-data" method="POST">
+            <br/>
+            <div class="sort" style="display:inline;">
+                {% for element in form %}
+                <p>
+                    {% csrf_token %}
+                    <b>Sort: </b><button class="icons" style="color:#99003d; height: 20px; font-size:15px;">{{element}}</button>
+                </p>
+                {%endfor%}
+
+            </div>
+
+        </form>
+        
+        <table>
+            <tr>
+                <td><b> Order number</b></td>
+                <td><b> Name</b></td>
+                <td><b> Address</b></td>
+                <td><b> City</b></td>
+                <td><b> Status</b></td>
+                <td><b> Last update</b></td>
+                <td><b> Edit status</b></td>
+            </tr>
+            {% for shipp in shipping %}
+                {% for item in items %}
+
+
+                    {% csrf_token %}
+                    {% if shipp.id == item.shipping_id %}
+                        {% for product in products %}
+                            {% if product.id == item.product_id %}
+                            <tr>
+                                <td> {{item.id}}</td>
+                                <td> {{product.name}}</td>
+                                <td> {{shipp.street}}{{shipp.streetNumber}}</td>
+                                <td> {{shipp.city}}</td>
+                                <td>{{item.status}}</td>
+                                <td>{{item.update_on}}</td> &nbsp;
+                                <td> <a href="{%url 'statusEdit' orderStatusId=item.id %}"><button class="icons" style="color:#99003d; "><i class="fa fa-edit"></i></button></a></td>
+                            {%endif%}
+                        {%endfor%}
+                    {%endif%}
+                    </tr>
+
+
+                {%endfor%}
+            {%endfor%}
+        </table>
+        <br /><br />
+    </div>
+{%endblock%}

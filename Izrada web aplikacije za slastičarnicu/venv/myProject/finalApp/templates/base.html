@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+{% load static %}
+{% load widget_tweaks %}
+<head>
+
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
+    </script>
+</head>
+
+<div class="start">
+    <img class="logo" src='/static/images/ikona2.png' width="85" height="75"><br />
+    <div class="search">
+
+        <!--<a href="{%url 'filter' %}"><button class="icons"><i class="fa fa-filter"></i></button></a>-->
+        <div class="items">
+
+            <h3>Sweet corner</h3>
+        </div>
+
+        <div class="searchPosition" style="float:right">
+
+            <form name="search" method="POST" action="{% url 'searchResult' %}">
+                <input class="mySearch" type="text" name="search" placeholder="Search" />
+                {% csrf_token %}
+                <button type="submit" class="navIcons"><i class="fa fa-search"></i></button>
+
+            </form>
+
+            <!--<form name="filter" method="GET" action="{% url 'search' %}">
+
+                {% csrf_token %}
+                <a href="{% url 'filter'%}"><button class="icons"><i class="fa fa-filter"></i></button></a>
+            </form>-->
+
+        </div>
+    </div>
+
+
+    <div class="navbar" id="myTopnav">
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+        {% if user.is_authenticated and user.role == 'admin' %}
+        <a href="{%url 'homePage'  %}">Home</a>
+
+        <a href="{%url 'statusUpdate' %}">Truck</a>
+        <a href="{%url 'listCategory' %}" class="categories">Categories</a>
+        <a style="float:right" href="{% url 'logout' userId=user.id %}" class="navIcons"><i class="fa fa-sign-out"></i></a></li>
+        <a style="float:right" href="{%url 'listUsers' %}" class="navIcons"><i class="fa fa-user"></i></a></li>
+
+        <a style="float:right" href="{%url 'addUser' %}" class="navIcons"><i class="fa fa-user-plus"></i></a></li>
+        <button style="float:right" class="filter" onClick="GFG_Fun()"><i class="fa fa-filter"></i></button></li>
+
+        {% elif user.is_authenticated and user.role == 'user' %}
+        <a href="{%url 'homePage'  %}">Home</a>
+        <a style="float:right" href="{% url 'logout' userId=user.id %}" class="navIcons"><i class="fa fa-sign-out"></i></a>
+        <a style="float:right" href="{%url 'listCartItem' userId=user.id %}" class="navIcons"><i class="fa fa-shopping-cart"></i><shop-carticon-caption caption-data="{num_items: {{ cartNum.num_items|default:0 }} }"></shop-carticon-caption></a>
+        {% if cartNum > 0 %}
+        <span class="cartNum">{{cartNum}}</span>
+        {%endif%}
+        <a style="float:right" href="{%url 'listFavouriteItems' userId=user.id %}"><i class="fa fa-heart"></i></a>
+        <a style="float:right" href="{%url 'userUpdate' userId=user.id %}" class="navIcons"><i class="fa fa-user"></i></a>
+        <a href="{%url 'tracking' userId=user.id %}">Truck</a>
+        <div class="dropdown">
+            <a href="#">Categories</a>
+
+            <div class="dropdown-content">
+                {% for items in categories %}
+                <a href="{%url 'filterProductsByCategory' categoryId=items.id %}">{{items.name}}</a>
+                {%endfor%}
+            </div>
+
+        </div>
+        <button style="float:right" class="filter" onClick="GFG_Fun()"><i class="fa fa-filter"></i></button></li>
+
+        {% else %}
+        <a href="{%url 'homePage' %}">Home</a></li>
+        <a style="float:right" href="{% url 'login' %}" class="navIcons"><i class="fas fa-sign-in-alt"></i></a></li>
+        <a style="float:right" href="{% url 'register' %}" class="navIcons"><i class="fa fa-user-plus"></i></a></li>
+        <button style="float:right" class="filter" onClick="GFG_Fun()"><i class="fa fa-filter"></i></button></li>
+        {%endif%}
+
+
+    </div><br /><br />
+</div>
+<br /><br /><br />
+
+<div id="div">
+    <form method="get" action="{% url 'search' %}">
+        <div class="filterFields">
+
+            {% for element in filter.form %}
+
+            {%if element.name == 'price__gt'%}
+            <p class="filterTitle" style="text-align:center">Price</p>
+            <div class="elementForm">
+
+                <p>From: {{element}}</p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                {% elif element.name == 'price__lt' %}
+                <p>to: {{element}}</p>
+            </div>
+
+            {% elif element.name == 'update_on__gt'%}
+            <p style="text-align:center" class="filterTitle">Date</p>
+            <div class="elementForm">
+
+                <p>From: {{element}}</p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                {% elif element.name == 'update_on__lt' %}
+                <p>to: {{element}}</p>
+            </div>
+            {%endif%}
+
+
+            {% endfor %}
+        </div>
+        {% csrf_token %}
+        <p style="text-align:center; align-items:center;">
+            <button type="submit" class="cart" style="background:#669999">Filter</button>
+        </p><br />
+        <script>
+
+            function show(divId) {
+                $("#" + divId).show();
+            }
+
+            function GFG_Fun() {
+                show('div');
+            }
+
+            function myFunction() {
+                var x = document.getElementById("myTopnav");
+                if (x.className === "navbar") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "navbar";
+                }
+            }
+
+
+        </script>
+
+
+    </form>
+</div><br /><br /><br />
+<body>
+    {% block content %}
+
+    {% endblock %}
+</body>
+<footer class="myFooter">
+    <ul>
+        <li><a href="{%url 'aboutUs'  %}">About page</a></li>
+        <li><a href="{%url 'privacyPolicy'  %}">Privacy Policy</a></li>
+        <li><a href="{%url 'help'  %}">Help</a></li>
+        <li><a href="{%url 'terms'  %}">Terms</a></li>
+
+
+        <li style="float:right"><a href="http://www.facebook.com"><i class="fa fa-facebook-f"></i></a></li>
+        <li style="float:right"><a href="http://www.instagram.com"><i class="fa fa-instagram"></i></a></li>
+        <li style="float:right"><a href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
+
+    </ul>
+</footer>
+</html>

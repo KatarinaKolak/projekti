@@ -1,0 +1,22 @@
+﻿{% extends 'base.html' %}
+
+{% block content %}
+<br/><br/>
+<form enctype="multipart/form-data" method="POST">
+    <br/>
+    <div class="inputFields">
+
+        <p><b><i> Your order is successful selected. Thank you &#128522 </i></b></p>
+        <p> <b>One more step: </b></p>
+       
+            <p><b><i>Enter your card details: </i></b></p>
+       
+             {% for element in form %} 
+                <b>{{ element.label }}</b>{{element}}<br/>
+            {%endfor%}
+             <br /><br />
+        {% csrf_token %}
+        <button type="submit" style="width: 70px;" class="iconsBuy">Submit</button>
+    </div>
+</form>
+{% endblock %}
