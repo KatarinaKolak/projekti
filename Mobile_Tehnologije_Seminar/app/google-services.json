@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "187804914912",
+    "project_id": "mtseminar-3c5b8",
+    "storage_bucket": "mtseminar-3c5b8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187804914912:android:aa6f1303a2de723d7a2c85",
+        "android_client_info": {
+          "package_name": "com.example.mt_seminar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "187804914912-58qdha03il27lhfovlsjj7gfpquq95p9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0Jna12EeXh-U4nvnbG1RW9ha6bsqGnNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "187804914912-58qdha03il27lhfovlsjj7gfpquq95p9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
