@@ -1,0 +1,448 @@
+html { 
+overflow:auto; 
+height:100%;
+width:100%; 
+margin:auto;
+font-size: 62.5%;
+}
+
+body {
+  height: 100%;
+  font-size: 1.5em;
+  line-height: 1.6em;
+  margin: auto;
+  max-width:100%; 
+  background-color: #f7f7f7;
+  padding: 0;
+  overflow-x: hidden;
+  font-family:sans-serif;
+}
+
+div {
+  max-width: 100%;
+  height: auto;
+}
+
+h2{
+	text-align: center;
+	position:relative;
+	margin-top: 5%;
+	color: #7f9183;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 3%;
+}
+
+
+.logo{
+	background-color:#92b6b1;
+}
+
+.log {
+	height: 100%;
+	background-color:#92b6b1;
+	position:relative;
+	margin-top:1%;
+	margin-left: 1%;
+}
+
+
+/*definiranje trazilice i fav ikone*/
+.icons {
+	border: 1px solid #92b6b1; 
+	position:relative;
+	display: flex;
+	justify-content:flex-end;
+	margin-top:-3.5%;
+	right: -59%;
+	width:40%;
+	background-color:#92b6b1; 
+}
+.search{
+	height:31px;
+	position: relative;
+	top: -2%;
+}
+
+
+/*slika u reviewu*/
+.prva{
+	position: relative;
+	right:-4%;
+}
+
+/*tekst reviewa*/
+.review {
+  font-family:sans-serif;
+  position:relative;
+  margin-top: -34%;
+  right: -33%;
+  width:55%;
+}
+
+/*boja zvjezdica*/
+.checked{
+	color: #92b6b1;
+}
+
+.but ,.search {
+  border-radius: 8px;
+  background-color: #dfe9e8; 
+  border: 1px solid #ddd; 
+}
+
+/*pomicanje fav ikone*/
+#fav{
+	position:relative;
+	left: -1%;
+	background-color: #dfe9e8; 
+}
+
+.r{
+	margin-left: 20px;}
+
+
+.star {
+  position: absolute;
+  margin-top: 164%;
+  right: 20.5%;
+  text-align: center;
+
+}
+
+.but:hover {
+  box-shadow: 0 0 2px 2px #ddd;
+}
+
+
+.naslov{
+	display:flex;
+	justify-content: space-between;
+	position:relative;
+	right: 50%;
+	margin-top: 75%;
+	width: 70%;
+	text-align: center;
+	
+}
+
+.main{
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	right: -11.5%;
+	width: 75%;
+	top: 2%;
+}
+
+
+/* navigacija*/
+
+.navbar {
+  overflow: hidden;
+  background-color:/*#7f9183*/#92b6b1; 
+  font-family: Arial;
+  display:flex;
+  justify-content: center;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 15px 25px;
+  text-decoration: none;
+  font-family: sans-serif;
+}
+
+.navbar a li{
+	list-style: none;
+	text-decoration: none;
+	font-family: sans-serif;
+}
+
+/*dropdown u navigaciji */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; 
+  margin: 0; 
+}
+
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: /*#92b6b1*/#dfe9e8;
+  color: grey; 
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  margin-top:3.5%;
+  background-color: #dfe9e8;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  font-family: sans-serif;
+}
+
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+.c1 {
+	clear:left;
+	background:#ead1b1;
+	display:flex;
+	justify-content:center;}
+
+.txt{
+	display:flex;
+	justify-content:center;}
+	
+/*botuni u icons*/
+.but{
+	background-color:#dfe9e8;
+	width:35px;
+	height:35px;
+}
+
+
+
+/*AUTHOR BOX*/
+
+/* Media Object */
+.media {
+  display: flex;
+  align-items: flex-start;
+}
+.media-figure {
+  margin-right: 1em;
+}
+
+.media-body {
+  flex: 1;
+}
+/* Author Box Styles */
+.author-box {
+    background: #d2d0ba;
+	margin-right: 1%;
+	margin-left: 1%;
+    padding: 20px;
+    border-radius: 100px;
+}	
+
+
+/*FOOTER*/
+
+.footer {
+  overflow: hidden;
+  background-color:	#92b6b1;
+  font-family: Arial;
+  display:flex;
+  justify-content: flex-start;
+  position: relative;
+  top: 25%;
+  height:25%;
+  width:100%;
+  padding: 0% 0% 2% 0%;
+  margin: auto;
+}
+
+
+.footer a {
+  float: left;
+  font-size: 14px;
+  color: white;
+  text-decoration: none;
+}
+
+.footer li{
+	list-style: none;
+	text-decoration: none;
+}
+
+.footer ul li{
+	display: flex;
+	justify-content: flex-start;
+	margin-right: 100px;  /*ne diraj*/
+}
+	
+.social {
+	#border: 1px solid #fff; /* For debugging */
+	display: flex;
+	justify-content: flex-end;
+	position:relative;
+	right: -230%;
+	margin-top:10%;
+	width:100%;
+	padding: 1% 2% 25% 35%;
+	margin: 5% 0px;
+	margin: auto;
+}
+
+.connection {
+	#border: 1px solid #fff; /* For debugging */
+	display: flex;
+	justify-content: flex-end;
+	position:relative;
+	right: -95%;
+	margin-top:1%;
+}
+
+
+.text{
+	position:relative;
+	margin-top: 15%;
+	margin:auto;
+	width: 70%;
+}
+
+.first{
+	text-align: center;
+	
+}
+
+
+/*RESPONZIVNI DIZAJN*/
+
+/*mobitel*/
+@media screen and (max-width: 798px) {
+	.footer{
+		width:100%;
+		margin: auto;
+		padding:0;
+	}
+	.connection{
+		margin:auto;	
+	}
+	.prva{
+		position: relative;
+		right: -35%;
+		width: 40%;
+		height: 50%;
+	}
+	.first{
+		position: relative;
+		margin-top: 100%;
+		right: 8%;
+		line-height: 24px;
+	}
+		
+	h2{
+		position:relative;
+		margin-top: 10%;
+	}
+	.media {
+		width:80%;
+		position:relative;
+		right: -10%;
+	}
+	div.sel{
+		width: 115px;
+		height: 175px;
+	}
+	
+	.main{
+		position:relative;
+		right:-38%;
+		display: flex;
+		flex-direction: column;
+		margin-top: 10%;
+		}
+		
+	body{
+		overflow-x: hidden;
+	}
+	
+}
+
+/*tablet*/
+@media screen and (min-width: 800px) and (max-width: 970px){
+	body{
+		overflow-x: hidden;
+	}
+	body{
+		width:auto;
+		padding:0;
+		margin:0;
+		overflow-x: hidden;
+	}
+	
+	html{
+		height: 100%;
+	}
+	.review{
+		position: relative;
+		right: -45%;
+		top: -15%;
+	}
+	.prva{
+		height: 380px;
+		width: 270px;
+		position: relative;
+		right: -5%;
+	}
+	
+	.media{
+		position: relative;
+		width: 50%;
+	}
+	.footer{
+		width: 100%;
+		margin:auto;
+		padding:0;
+		position: relative;
+		top: 10%;}
+		
+	div.sel{
+		width: 115px;
+		height: 175px;
+	}
+	
+
+			.media {
+	  display: flex;
+	  align-items: flex-start;
+	  width: 95%;
+	  position: relative;
+	  right: -1.5%;
+	}
+	.media-figure {
+	  margin-right: 1em;
+	}
+	.media-body {
+	  flex: 1;
+	}	
+}
