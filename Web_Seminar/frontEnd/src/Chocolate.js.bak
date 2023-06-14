@@ -1,0 +1,98 @@
+import React, { useContext, useState, useEffect } from "react";
+import Detail from "./Detail";
+import { Link } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'react-bootstrap';
+import FavContext from "./FavContext";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+import Context from "./CartContext";
+
+const Chocolate = (props) => {
+  const [cart, setCart] = useContext(Context);
+  const [userName, setUserName] = useState("");
+  const [role, setRole] = useState("");
+  const [userId, setUserId] = useState();
+  const [favs, setFavs] = useContext(FavContext);
+
+  function addToCart() {
+    const array = Object.keys(cart);
+    for(item in array){
+        console.log(cart[item])
+        if (cart[item]._id === product._id){
+            cart[item].quantities += 1;
+            return cart;
+        }
+       
+    }
+    product.quantities = 1;
+    setCart([...cart, product]);
+  }
+
+function addToFavs() {
+    const array = Object.keys(favs);
+    for(item in array){
+        console.log(favs[item])
+        if (favs[item]._id === product._id){
+            return ;
+        }
+       
+    }
+    setFavs([...favs, product]);
+}
+
+
+  function getCurrent(){
+        const myuser = JSON.parse(localStorage.getItem("user"));
+        if (myuser){
+            setUserName(myuser.name);
+            setRole(myuser.role);
+            setUserId(myuser.id);
+        }
+  }
+
+  async function deleteChocolate(e){
+      e.preventDefault();
+
+      const requestOptions = {
+          method: 'DELETE'
+        }
+
+    const typeList = await fetch(`http://localhost:5000/api/deleteChocolate/${props.id}`,requestOptions);
+    console.log("Result", typeList);
+  }
+
+  useEffect(() => {
+    getCurrent();
+  }, []);
+
+  return(
+    <div className="col-4 p-4">
+        <img src={props.image} width={200} height={100}/><br/>
+        <p><i> Name: {props.name}</i></p>
+        <p>Price: {props.price}kn</p><br/><br></br>
+        
+        { role === "admin" ? (
+        <div>
+            <Link to={`/editChocolate/${props.id}`}>
+            <button className="btn btn-primary btn-sm m-1">Edit</button></Link>
+            <button className="btn btn-danger btn-sm m-1" onClick={deleteChocolate}>Delete</button><br/><br/><br/>
+         </div>
+        ) : role === "user" ? (
+          <div>
+              <Link to={`/details/${props.id}`}>
+                <button className="btn btn-info btn-sm m-1">Details</button></Link>
+                <button type="submit" className="btn btn-info btn-sm" onClick={addToCart}><ShoppingCartIcon /></button>
+                <button type="submit" className="btn btn-info btn-light" onClick={addToFavs}><i class="fa fa-heart"></i></button>
+          </div>
+        ) : (
+          <div>
+                <Link to={`/details/${props.id}`}><button className="btn btn-info btn-sm m-1">Details</button></Link>
+          </div>
+        )}
+    <br/><br/><br/>
+    </div>
+)
+}
+
+export default Chocolate;

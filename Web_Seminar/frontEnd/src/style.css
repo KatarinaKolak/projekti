@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+}
+
+.producersItem {
+  align-items: center;
+    text-align: center;
+    width: 450px;
+    height: 350px;
+    padding: 24px;
+    margin: 12px;
+    border: 3px solid #99003d;
+    font-size: 18px;
+}
+
+.productItem {
+  align-items: center;
+    text-align: center;
+    width: 300px;
+    height: 250px;
+    padding: 24px;
+    margin: 12px;
+    border: 3px solid #99003d;
+    font-size: 18px;
+}
+
