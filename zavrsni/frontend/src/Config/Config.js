@@ -1,0 +1,2 @@
+export const CLIENT_ID = process.env.CLIENT_ID || "Ac7b10ZyqfJBFuDUYu5msjoxl8b6YFPyiM65Bqj8zcpi59P4mSYY58Le8-nNW1Xjk7hjLMostGeFtpT3"
+export const APP_SECRET = process.env.APP_SECRET || "EMmTylZMoQEIOrKg5jCGnDKTnA7_UjXY1Uv5OPghEkK5fZmCEPWe8b7TwkYmZC-Gif5Qe2U2K0gYokyv"
