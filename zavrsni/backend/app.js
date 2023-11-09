@@ -26,7 +26,7 @@ const port = process.env.PORT || 3001;
 const CLIENT_ID = process.env.CLIENT_ID;
 const APP_SECRET = process.env.APP_SECRET;
 mongoose.set('strictQuery', false);
- mongoose.connect('mongodb://localhost:27017/shopDB', {useNewUrlParser: true, useUnifiedTopology: true}).then(res=>console.log("Connected!")).catch(err=>console.log("Error", err.message)); // my database collection
+ mongoose.connect('mongodb+srv://katarinakolak33:12345@cluster0.bwx3ngm.mongodb.net/shopDB', {useNewUrlParser: true, useUnifiedTopology: true}).then(res=>console.log("Connected!")).catch(err=>console.log("Error", err.message)); // my database collection
 
 const db = mongoose.connection
 
